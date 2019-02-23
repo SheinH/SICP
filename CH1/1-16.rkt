@@ -1,4 +1,4 @@
-#lang racket
+#lang sicp
 (define (expt b n)
   (if (= n 0)
       1

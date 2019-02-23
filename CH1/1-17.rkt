@@ -1,4 +1,4 @@
-#lang racket
+#lang sicp
 (define (helper x y s)
   (cond ((= y 1) (+ s x))
         ((even? y) (helper (* x 2) (/ y 2) s))
