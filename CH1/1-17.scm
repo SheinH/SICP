@@ -1,9 +1,11 @@
 #lang sicp
-(define (helper x y s)
-  (cond ((= y 1) (+ s x))
-        ((even? y) (helper (* x 2) (/ y 2) s))
-        (else (helper x (- y 1) (+ s x)))))
+
+(define (double x)
+  (* x 2))
+(define (halve x)
+  (/ x 2))
 (define (mult x y)
-  (if (> y x)
-      (helper y x 0)
-      (helper x y 0)))
+  (cond ((= y 0) 0)
+        ((= y 1) x)
+        ((odd? y) (+ x (mult x (- y 1))))
+        (else (mult (* x 2) (/ y 2)))))
