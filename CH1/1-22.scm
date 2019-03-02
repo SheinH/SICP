@@ -1,4 +1,4 @@
-#lang scheme
+#lang sicp
 
 (define (square x) (* x x))
 
@@ -48,7 +48,16 @@
         ((fermat-test n) (fast-prime? n (- times 1)))
         (else false)))
 
-(define (search-for-primes s e)
-  (cond ((<= e s) (list))
-        ((fast-prime? e 50) (cons e (search-for-primes s (- e 1))))
-        (else (search-for-primes s (- e 1)))))
+(define (timed-prime-test a b n)
+  (newline)
+  (display n)
+  (start-prime-test a b n (runtime)))
+
+(define (start-prime-test a b n start-time)
+  {cond ((or (= n 0) (>= a b)) (report-prime (- (runtime) start-time)))
+        ((fast-prime? a 20) (start-prime-test (+ a 1) b (- n 1) start-time))
+        (else (start-prime-test (+ a 1) b n start-time))})
+
+(define (report-prime elapsed-time)
+  (display " *** ")
+  (display elapsed-time))
